@@ -1,0 +1,35 @@
+main > .section > div.mayor-message-wrapper {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: var(--orange);
+    color: white;
+    text-align: center;
+
+    h2 {
+        margin: 0;
+        font-family: var(--body-font-family);
+        font-size: var(--heading-font-size-l);
+        font-weight: 100;
+        padding: 10px;
+    }
+
+    a {
+        color: white;
+
+        &:not([href^='tel']) {
+            background-color: white;
+            border-radius: 30px;
+            padding: 5px 10px;
+            color: var(--orange);
+
+            .icon {
+                background-color: var(--orange);
+                width: 15px;
+                height: 15px;
+                margin-left: 5px;
+            }
+            
+        }
+    }
+}
