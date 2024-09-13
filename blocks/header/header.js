@@ -157,8 +157,6 @@ export default async function decorate(block) {
   tools.append(search);
   nav.append(tools);
 
-
-
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
