@@ -3,7 +3,6 @@ import {
   loadHeader,
   loadFooter,
   decorateButtons,
-  decorateIcons,
   decorateSections,
   decorateBlocks,
   decorateTemplateAndTheme,
@@ -13,6 +12,30 @@ import {
   loadCSS,
   sampleRUM,
 } from './aem.js';
+
+/**
+ * overlays icon to make it an image mask instead of an img.
+ * @param {Element, String, String} span The icon span element
+ */
+function decorateIcon(span, prefix = '') {
+  const iconName = Array.from(span.classList)
+    .find((c) => c.startsWith('icon-'))
+    .substring(5);
+  const iconPath = `${window.hlx.codeBasePath}${prefix}/icons/${iconName}.svg`;
+  span.style.maskImage = `url(${iconPath})`;
+}
+
+/**
+ * Add <img> for icons, prefixed with codeBasePath and optional prefix.
+ * @param {Element} [element] Element containing icons
+ * @param {string} [prefix] prefix to be added to icon the src
+ */
+function decorateIcons(element, prefix = '') {
+  const icons = [...element.querySelectorAll('span.icon')];
+  icons.forEach((span) => {
+    decorateIcon(span, prefix);
+  });
+}
 
 /**
  * Builds hero block and prepends to main in a new section.
