@@ -225,12 +225,11 @@ main img {
   display: inline-block;
   height: 24px;
   width: 24px;
+  background-color: var(--text-color);
+  mask-size: contain;
+  mask-repeat: no-repeat;
 }
 
-.icon img {
-  height: 100%;
-  width: 100%;
-}
 
 /* sections */
 main > .section {
