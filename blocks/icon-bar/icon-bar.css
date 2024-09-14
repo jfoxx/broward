@@ -1,0 +1,41 @@
+.icon-bar {
+
+    ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0 auto;
+        max-width: var(--max-width);
+
+        li {
+            width: 150px;
+            overflow: hidden;
+            padding: 20px 0 0;
+
+            a {
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                color: black;
+                line-height: 1;
+
+                span.icon {
+                    display: block;
+                    margin: auto;
+                    background-color: var(--light-blue);
+                    width: 30px;
+                    height: 30px;
+                    mask-size: contain;
+                    margin-bottom: 20px;
+                }
+
+                &:hover {                    
+                    span.icon {
+                        background-color: var(--orange);
+                    }
+                }
+
+            }
+        }
+    }
+}
