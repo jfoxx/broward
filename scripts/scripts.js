@@ -25,6 +25,14 @@ function decorateIcon(span, prefix = '') {
   span.style.maskImage = `url(${iconPath})`;
 }
 
+export default function convertExcelDate(value) {
+  const excelStartDate = new Date(1900, 0, 1);
+  // Subtract 1 because Excel counts 1900-01-01 as 1, not 0
+  const days = value - 1;
+  const readableDate = new Date(excelStartDate.getTime() + days * 24 * 60 * 60 * 1000);
+  return (readableDate.toDateString());
+}
+
 /**
  * Add <img> for icons, prefixed with codeBasePath and optional prefix.
  * @param {Element} [element] Element containing icons
