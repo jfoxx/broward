@@ -237,7 +237,7 @@ main > .section {
 }
 
 main > .section > div {
-  max-width: 1200px;
+  max-width: 1600px;
   margin: auto;
   padding: 0 24px;
 }
@@ -258,4 +258,39 @@ main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
   padding: 40px 0;
+}
+
+main .section.dark {
+  background-color: var(--dark-blue);
+  margin: 0;
+  padding: 40px 0;
+  color: white;
+
+  .columns-2-cols {
+    >div > div {
+      display: flex;
+      justify-content: start;
+      flex-wrap: wrap;
+
+      h2 {
+        flex-basis: 100%;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        width: 50%; 
+        
+        li {
+          margin-bottom: 15px;
+
+          .icon {
+            background-color: var(--light-blue);
+            margin-right: 10px;
+            margin-bottom: -5px;
+          }
+        }
+      }
+    }
+  }
 }

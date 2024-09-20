@@ -1,0 +1,9 @@
+.image-heading {
+    img {
+        max-width: 500px;
+    }
+
+    h2 {
+        display: none;
+    }
+}

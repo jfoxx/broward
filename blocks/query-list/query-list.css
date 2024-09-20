@@ -34,6 +34,7 @@
                 img {
                     aspect-ratio: 20/9;
                     object-fit: cover;
+                    min-width: 100%;
                 }
 
                 p {
