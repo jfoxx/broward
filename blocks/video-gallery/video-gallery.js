@@ -4,8 +4,6 @@
  * https://www.hlx.live/developer/block-collection/video
  */
 
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
 function embedYoutube(url, autoplay, background) {
   const usp = new URLSearchParams(url.search);
   let suffix = '';
@@ -107,10 +105,10 @@ const loadVideoEmbed = (block, link, autoplay, background) => {
 };
 
 function tabClick(block) {
-    const url = this.dataset['videourl'];
-    const target = block.querySelector('.video');
-    target.textContent = '';
-    target.append(loadVideoEmbed(block, url, false));
+  const url = this.dataset.videourl;
+  const target = block.querySelector('.video');
+  target.textContent = '';
+  target.append(loadVideoEmbed(block, url, false));
 }
 
 export default async function decorate(block) {
@@ -119,24 +117,19 @@ export default async function decorate(block) {
   const tabs = document.createElement('ul');
   tabs.className = 'video-tabs';
   const children = [...block.children];
-  const placeholder = block.querySelector('picture');
-  const link = block.querySelector('a').href;
   children.forEach((item) => {
-        const placeholder = item.querySelector('picture');
-        const link = item.querySelector('a').href;
-        const tab = document.createElement('li');
-        const tabLink = document.createElement('a');
-        tabLink.append(placeholder);
-        tabLink.id = `tablink-${children.indexOf(item)}`;
-        tabLink.dataset['videourl'] = link;
-        tabLink.addEventListener('click', () => tabClick(block));
-        tab.append(tabLink);
-        tabs.append(tab);
+    const placeholder = item.querySelector('picture');
+    const link = item.querySelector('a').href;
+    const tab = document.createElement('li');
+    const tabLink = document.createElement('a');
+    tabLink.append(placeholder);
+    tabLink.id = `tablink-${children.indexOf(item)}`;
+    tabLink.dataset.videourl = link;
+    tabLink.addEventListener('click', () => tabClick(block));
+    tab.append(tabLink);
+    tabs.append(tab);
+  });
 
-    })
-  
   block.textContent = '';
   block.append(videoWrapper, tabs);
-
-  
 }
