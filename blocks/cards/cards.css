@@ -65,16 +65,18 @@
         }
       }
 
+      &:has(em) {
+        background-color: var(--dark-blue);
+        color: white;
+      }
+
       &:hover {
         cursor: pointer;
         background-color: var(--med-blue);
         color: white;
       }
 
-      &:has(em) {
-        background-color: var(--dark-blue);
-        color: white;
-      }
+      
     }
   }
 }
