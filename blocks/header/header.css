@@ -1,4 +1,5 @@
 /* header and nav layout */
+
 header .nav-wrapper {
   background-color: var(--dark-blue);
   color: white;
@@ -6,24 +7,9 @@ header .nav-wrapper {
   z-index: 2;
 }
 
-header nav {
-  box-sizing: border-box;
-  align-items: center;
-  margin: auto;
-  height: var(--nav-height);
-  padding: 0 24px;
-  font-family: var(--body-font-family);
-  display: flex;
-  justify-content: space-between;
-
-  >div {
-    width: 30%;
-  }
-}
-
-header nav[aria-expanded='true'] {
-  overflow-y: auto;
-  min-height: 100dvh;
+body.nav-open .nav-wrapper {
+  position: fixed;
+  z-index: 100;
 }
 
 @media (width >= 900px) {
@@ -49,86 +35,6 @@ header nav a:any-link {
   color: currentcolor;
 }
 
-/* hamburger */
-header nav .nav-hamburger {
-  grid-area: hamburger;
-  height: 22px;
-  display: flex;
-  align-items: center;
-}
-
-header nav .nav-hamburger button {
-  height: 22px;
-  margin: 0;
-  border: 0;
-  border-radius: 0;
-  padding: 0;
-  background-color: var(--background-color);
-  color: inherit;
-  overflow: initial;
-  text-overflow: initial;
-  white-space: initial;
-}
-
-header nav .nav-hamburger-icon,
-header nav .nav-hamburger-icon::before,
-header nav .nav-hamburger-icon::after {
-  box-sizing: border-box;
-  display: block;
-  position: relative;
-  width: 20px;
-}
-
-header nav .nav-hamburger-icon::before,
-header nav .nav-hamburger-icon::after {
-  content: '';
-  position: absolute;
-  background: currentcolor;
-}
-
-header nav[aria-expanded='false'] .nav-hamburger-icon,
-header nav[aria-expanded='false'] .nav-hamburger-icon::before,
-header nav[aria-expanded='false'] .nav-hamburger-icon::after {
-  height: 2px;
-  border-radius: 2px;
-  background: currentcolor;
-}
-
-header nav[aria-expanded='false'] .nav-hamburger-icon::before {
-  top: -6px;
-}
-
-header nav[aria-expanded='false'] .nav-hamburger-icon::after {
-  top: 6px;
-}
-
-header nav[aria-expanded='true'] .nav-hamburger-icon {
-  height: 22px;
-}
-
-header nav[aria-expanded='true'] .nav-hamburger-icon::before,
-header nav[aria-expanded='true'] .nav-hamburger-icon::after {
-  top: 3px;
-  left: 1px;
-  transform: rotate(45deg);
-  transform-origin: 2px 1px;
-  width: 24px;
-  height: 2px;
-  border-radius: 2px;
-}
-
-header nav[aria-expanded='true'] .nav-hamburger-icon::after {
-  top: unset;
-  bottom: 3px;
-  transform: rotate(-45deg);
-}
-
-@media (width >= 900px) {
-  header nav .nav-hamburger {
-    display: none;
-    visibility: hidden;
-  }
-}
 
 /* brand */
 header .nav-brand {
@@ -145,44 +51,113 @@ header nav .nav-brand img {
 }
 
 /* sections */
-header nav .nav-sections {
-  visibility: hidden;
+header nav {
+  box-sizing: border-box;
+  align-items: center;
+  margin: auto;
+  height: var(--nav-height);
+  padding: 0 24px;
+  font-family: var(--body-font-family);
+  display: flex;
+  justify-content: space-between;
 
-  >.default-content-wrapper {
-    display: none;
+  >div {
+    width: 30%;
   }
 
-  button {
-    border: 1px solid var(--light-blue);
-    background-color: transparent;
-    border-radius: 10px;
-    font-size: var(--body-font-size-xs);
-    font-family: var(--body-font-family);
+  .nav-sections {
+    position: relative;
+
+    >.default-content-wrapper {
+     position: fixed;
+     z-index: 300;
+     width: 80%;
+     left: -100%;
+     background-color: white;
+     height: 100vh;
+     color: var(--med-blue);
+     padding: 30px 10%;
+     margin: auto;
+     transition: all .5s ease;
+     overflow-y: scroll;
+    }
+  
+    button {
+      border: 1px solid var(--light-blue);
+      background-color: transparent;
+      border-radius: 10px;
+      font-size: var(--body-font-size-xs);
+      font-family: var(--body-font-family);
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      font-size: var(--body-font-size-s);
+
+      > li {
+        font-weight: 500;
+
+        > ul {
+          margin-top: 0;
+
+          > li {
+            font-weight: 400;
+          }
+        }
+      }
+    }
+  
+   
   }
-}
 
-header nav[aria-expanded='true'] .nav-sections {
-  display: block;
-  visibility: visible;
-  align-self: start;
-}
+  &[aria-expanded='true'] {
+    overflow-y: auto;
+    min-height: 100dvh;
 
-header nav .nav-sections ul {
-  list-style: none;
-  padding-left: 0;
-  font-size: var(--body-font-size-s);
-}
+    .nav-sections {
+      >.default-content-wrapper {
+        display: block;
+        left: 0;
 
-header nav .nav-sections ul > li {
-  font-weight: 500;
-}
+        >ul {
+          width: 60%;
 
-header nav .nav-sections ul > li > ul {
-  margin-top: 0;
-}
+          >li {
+            border-bottom: 1px solid var(--light-gray);
+            margin-bottom: 30px;
 
-header nav .nav-sections ul > li > ul > li {
-  font-weight: 400;
+            >ul {
+              position: relative;
+              width: 100%;
+
+              >li {
+                margin-bottom: 20px;
+                font-weight: bold;
+                white-space: normal;
+
+                em {
+                  font-weight: normal;
+                  font-size: small;
+                  color: gray;
+                  display: block;
+                  margin-left: 40px;
+                }
+
+                span.icon {
+                  background-color: var(--light-blue);
+                  margin-bottom: -6px;
+                  margin-right: 15px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    
+  }
+
 }
 
 @media (width >= 900px) {
@@ -218,13 +193,11 @@ header nav .nav-sections ul > li > ul > li {
 
   header nav .nav-sections .nav-drop[aria-expanded='true']::after {
     top: unset;
-    bottom: 0.5em;
+    top: 0.5em;
     transform: rotate(315deg);
   }
 
   header nav .nav-sections ul {
-    display: flex;
-    gap: 24px;
     margin: 0;
   }
 
@@ -240,13 +213,7 @@ header nav .nav-sections ul > li > ul > li {
 
   header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul {
     display: block;
-    position: absolute;
-    left: -24px;
-    width: 200px;
-    top: 150%;
-    padding: 16px;
-    background-color: var(--light-color);
-    white-space: initial;
+
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
