@@ -4,6 +4,7 @@
 
     .video {
         width: 50%;
+        color: transparent;
     }
     
     .video-tabs {

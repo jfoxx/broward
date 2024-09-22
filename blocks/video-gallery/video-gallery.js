@@ -75,9 +75,7 @@ function getVideoElement(source, autoplay, background) {
 }
 
 const loadVideoEmbed = (target, link, autoplay, background) => {
- 
   const url = new URL(link);
-
   const isYoutube = link.includes('youtube') || link.includes('youtu.be');
   const isVimeo = link.includes('vimeo');
 
@@ -85,13 +83,13 @@ const loadVideoEmbed = (target, link, autoplay, background) => {
     const embedWrapper = embedYoutube(url, autoplay, background);
     target.append(embedWrapper);
     embedWrapper.querySelector('iframe').addEventListener('load', () => {
-      block.dataset.embedLoaded = true;
+      target.dataset.embedLoaded = true;
     });
   } else if (isVimeo) {
     const embedWrapper = embedVimeo(url, autoplay, background);
     target.append(embedWrapper);
     embedWrapper.querySelector('iframe').addEventListener('load', () => {
-      block.dataset.embedLoaded = true;
+      target.dataset.embedLoaded = true;
     });
   } else {
     const videoEl = getVideoElement(link, autoplay, background);
@@ -104,9 +102,7 @@ const loadVideoEmbed = (target, link, autoplay, background) => {
 
 function tabClick(event, block) {
   const anchor = event.target.parentNode.parentNode;
-  console.log(anchor);
   const url = anchor.dataset.videourl;
-  console.log(url);
   const target = block.querySelector('.video');
   target.textContent = '';
   target.append(loadVideoEmbed(target, url, false, false));
