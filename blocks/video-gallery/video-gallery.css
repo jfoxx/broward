@@ -1,5 +1,6 @@
 .video-gallery {
     display: flex;
+    margin-top: 40px;
 
     .video {
         width: 50%;
@@ -15,7 +16,7 @@
 
         li {
             width: calc(50% - 40px);
-            padding: 20px;
+            padding: 0 20px 40px;
 
             img {
                 min-width: 100%;

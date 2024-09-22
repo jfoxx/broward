@@ -74,10 +74,8 @@ function getVideoElement(source, autoplay, background) {
   return video;
 }
 
-const loadVideoEmbed = (block, link, autoplay, background) => {
-  if (block.dataset.embedLoaded === 'true') {
-    return;
-  }
+const loadVideoEmbed = (target, link, autoplay, background) => {
+ 
   const url = new URL(link);
 
   const isYoutube = link.includes('youtube') || link.includes('youtu.be');
@@ -85,35 +83,39 @@ const loadVideoEmbed = (block, link, autoplay, background) => {
 
   if (isYoutube) {
     const embedWrapper = embedYoutube(url, autoplay, background);
-    block.append(embedWrapper);
+    target.append(embedWrapper);
     embedWrapper.querySelector('iframe').addEventListener('load', () => {
       block.dataset.embedLoaded = true;
     });
   } else if (isVimeo) {
     const embedWrapper = embedVimeo(url, autoplay, background);
-    block.append(embedWrapper);
+    target.append(embedWrapper);
     embedWrapper.querySelector('iframe').addEventListener('load', () => {
       block.dataset.embedLoaded = true;
     });
   } else {
     const videoEl = getVideoElement(link, autoplay, background);
-    block.append(videoEl);
+    target.append(videoEl);
     videoEl.addEventListener('canplay', () => {
-      block.dataset.embedLoaded = true;
+      target.dataset.embedLoaded = true;
     });
   }
 };
 
-function tabClick(block) {
-  const url = this.dataset.videourl;
+function tabClick(event, block) {
+  const anchor = event.target.parentNode.parentNode;
+  console.log(anchor);
+  const url = anchor.dataset.videourl;
+  console.log(url);
   const target = block.querySelector('.video');
   target.textContent = '';
-  target.append(loadVideoEmbed(block, url, false));
+  target.append(loadVideoEmbed(target, url, false, false));
 }
 
 export default async function decorate(block) {
   const videoWrapper = document.createElement('div');
   videoWrapper.className = 'video';
+  loadVideoEmbed(videoWrapper, 'https://vimeo.com/999122535', false, false);
   const tabs = document.createElement('ul');
   tabs.className = 'video-tabs';
   const children = [...block.children];
@@ -125,7 +127,7 @@ export default async function decorate(block) {
     tabLink.append(placeholder);
     tabLink.id = `tablink-${children.indexOf(item)}`;
     tabLink.dataset.videourl = link;
-    tabLink.addEventListener('click', () => tabClick(block));
+    tabLink.addEventListener('click', (event) => tabClick(event, block));
     tab.append(tabLink);
     tabs.append(tab);
   });
