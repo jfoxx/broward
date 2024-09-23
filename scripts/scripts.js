@@ -91,17 +91,16 @@ function loadCssFile(url) {
 function setupSa11y() {
   setTimeout(() => {
     Sa11y.Lang.addI18n(Sa11yLangEn.strings);
-  const sa11y = new Sa11y.Sa11y({
-    checkRoot: 'main',
-    panelPosition: "left",
-  });
+    const sa11y = new Sa11y.Sa11y({
+      checkRoot: 'main',
+      panelPosition: 'left',
+    });
   }, '3000');
-  
 }
 
 const runSa11y = async () => {
   loadCssFile('https://cdn.jsdelivr.net/gh/ryersondmp/sa11y@3.2.2/dist/css/sa11y.min.css');
-  loadJsFile('https://cdn.jsdelivr.net/combine/gh/ryersondmp/sa11y@3.2.2/dist/js/lang/en.umd.js,gh/ryersondmp/sa11y@3.2.2/dist/js/sa11y.umd.min.js', setupSa11y); 
+  loadJsFile('https://cdn.jsdelivr.net/combine/gh/ryersondmp/sa11y@3.2.2/dist/js/lang/en.umd.js,gh/ryersondmp/sa11y@3.2.2/dist/js/sa11y.umd.min.js', setupSa11y);
 };
 
 const sk = document.querySelector('helix-sidekick');
