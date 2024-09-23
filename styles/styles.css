@@ -23,6 +23,7 @@
   --med-blue: #0277bd;
   --light-blue: #33b5e5;
   --orange: #C50;
+  --light-orange: #FF974C;
 
 
   /* fonts */
@@ -293,5 +294,13 @@ main .section.dark {
         }
       }
     }
+  }
+}
+
+
+body.interior {
+
+  main > .section > div.default-content-wrapper {
+    max-width: 1200px;
   }
 }
