@@ -72,6 +72,22 @@ async function loadFonts() {
   }
 }
 
+async function loadJsFile(url, callback) {
+  const script = document.createElement('script');
+  script.src = url;
+  const head = document.querySelector('head');
+  head.append(script);
+  callback();
+}
+
+function loadCssFile(url) {
+  const link = document.createElement('link');
+  link.href = url;
+  link.rel = 'stylesheet';
+  const head = document.querySelector('head');
+  head.append(link);
+}
+
 function setupSa11y() {
   setTimeout(() => {
     Sa11y.Lang.addI18n(Sa11yLangEn.strings);
