@@ -113,7 +113,6 @@ header nav {
 
   &[aria-expanded='true'] {
     overflow-y: auto;
-    min-height: 100dvh;
 
     .nav-sections {
       >.default-content-wrapper {
