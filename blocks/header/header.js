@@ -150,6 +150,5 @@ export default async function decorate(block) {
     if (hero) {
       hero.after(await buildBreadcrumbs());
     }
-    
   }
 }
